@@ -106,5 +106,52 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
+    @Test
+    @DisplayName("should clear complete history when press ClearKey")
+    void testClearKey() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(1);
+
+        calc.pressBinaryOperationKey("+");
+
+        calc.pressDigitKey(10);
+        calc.pressDigitKey(4);
+
+        calc.pressClearKey();
+
+        calc.pressDigitKey(1);
+
+
+        calc.pressEqualsKey();
+        String expected = "22";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("should repeat calculation when pressing equals again")
+    void testRepeatCalculation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(1);
+
+        calc.pressBinaryOperationKey("+");
+
+        calc.pressDigitKey(10);
+
+        calc.pressEqualsKey();
+
+        calc.pressEqualsKey();
+
+        String expected = "41";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+
+    }
 }
+
+
